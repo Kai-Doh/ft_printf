@@ -6,7 +6,7 @@
 /*   By: ktiomico <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 14:03:09 by ktiomico          #+#    #+#             */
-/*   Updated: 2024/10/08 17:25:39 by ktiomico         ###   ########.fr       */
+/*   Updated: 2024/10/08 23:24:51 by ktiomico         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,17 @@
 # include <stdlib.h>
 # include <stdarg.h>
 
-int	ft_printf(const char *type, ...);
-int	printstr(char *str);
-int	printnbr(int n);
-int	printpercent(void);
-int	printchar(int c);
-int	format(char type, va_list args);
+int		ft_printf(const char *type, ...);
+int		printstr(char *str);
+int		printnbr(int n);
+int		printpercent(void);
+int		printchar(int c);
+int		format(char type, va_list args);
+int		ft_ptr_len(unsigned long long address);
+void	ft_put_hex(unsigned long long nbr);
+int		ft_printf_ptr(unsigned long long address);
+int		ft_printf_hex(unsigned int n);
+int		ft_printf_hexupper(unsigned int n);
+void	ft_put_hexupper(unsigned long long nbr);
 
 #endif

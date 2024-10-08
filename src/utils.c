@@ -6,11 +6,12 @@
 /*   By: ktiomico <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 16:04:09 by ktiomico          #+#    #+#             */
-/*   Updated: 2024/10/08 17:22:11 by ktiomico         ###   ########.fr       */
+/*   Updated: 2024/10/08 17:26:03 by ktiomico         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include "libft.h"
 
 int	printchar(int c)
 {

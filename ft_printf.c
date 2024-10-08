@@ -6,11 +6,12 @@
 /*   By: ktiomico <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 13:56:36 by ktiomico          #+#    #+#             */
-/*   Updated: 2024/10/08 17:22:48 by ktiomico         ###   ########.fr       */
+/*   Updated: 2024/10/08 17:41:51 by ktiomico         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include "libft.h"
 
 int	format(char type, va_list args)
 {
@@ -70,8 +71,11 @@ int	main(void)
 	int	n;
 
 	n = 42;
-	ft_printf("Hello its me, I am %d %% and idk\n", n);
-	printf("Hello its me, I am %d %% and idk\n", n);
-	n = ft_printf("Hello How are you\n");
-	ft_printf("%d\n", n);
+	ft_printf("This string was printed using ft_printf\n");
+	ft_printf("The following lines will be tests to make sure ft_printf works\n");
+	ft_printf("for any situations according to the project\n");
+	ft_printf("%%%% & %%d \n");
+	n = ft_printf("That was a test to make sure %%%% was shown\n");
+	ft_printf("the print before was 42 characters so n is: %d\n", n);
+	ft_printf("The n = 42 was a coincidence... or was it? hehehe :)");
 }

@@ -1,20 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libftprintf.h                                      :+:      :+:    :+:   */
+/*   ft_isascii.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ktiomico <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/05 14:03:09 by ktiomico          #+#    #+#             */
-/*   Updated: 2024/10/05 14:04:44 by ktiomico         ###   ########.fr       */
+/*   Created: 2024/09/29 02:04:32 by ktiomico          #+#    #+#             */
+/*   Updated: 2024/09/29 02:38:18 by ktiomico         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFTPRINTF_H
-# define LIBFTPRINTF_H
+#include "libft.h"
 
-# include <unistd.h>
-# include <stdlib.h>
-# include <stdarg.h>
-
-#endif
+int	ft_isascii(int c)
+{
+	if (c >= 0 && c <= 127)
+		return (1);
+	else
+		return (0);
+}
+/*
+#include <stdio.h>
+int	main(void)
+{
+	int c = 127;
+	if (ft_isascii(c) == 1)
+		printf("is ascii\n");
+	else
+		printf("is not ascii\n");
+	return (0);
+}
+*/

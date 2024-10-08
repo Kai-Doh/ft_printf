@@ -6,7 +6,7 @@
 /*   By: ktiomico <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 23:11:48 by ktiomico          #+#    #+#             */
-/*   Updated: 2024/10/08 23:40:54 by ktiomico         ###   ########.fr       */
+/*   Updated: 2024/10/09 00:47:15 by ktiomico         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	ft_printf_hex(unsigned int n)
 
 	len = 0;
 	ft_put_hex(n);
-	ft_ptr_len(n);
+	len += ft_ptr_len(n);
 	return (len);
 }
 
@@ -29,7 +29,7 @@ int	ft_printf_hexupper(unsigned int n)
 
 	len = 0;
 	ft_put_hexupper(n);
-	ft_ptr_len(n);
+	len += ft_ptr_len(n);
 	return (len);
 }
 

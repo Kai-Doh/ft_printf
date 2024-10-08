@@ -6,7 +6,7 @@
 /*   By: ktiomico <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 13:56:36 by ktiomico          #+#    #+#             */
-/*   Updated: 2024/10/08 23:51:52 by ktiomico         ###   ########.fr       */
+/*   Updated: 2024/10/09 01:17:08 by ktiomico         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,29 +61,73 @@ int	ft_printf(const char *type, ...)
 	va_end(args);
 	return (print_count);
 }
-
+/*
 #include <stdio.h>
 
 int	main(void)
 {
 	int	n;
-	char *h	= "this is a string that was printed using %s on ft_printf";
+	char c = 'c';
+	char *h	= "this is a string";
 	void *p;
-
+	int	size;
+	char *b = "ft_";
 	n = 42;
-	ft_printf("This string was printed using ft_printf\n");
-	ft_printf("The following lines are tests to make sure ft_printf works\n");
-	ft_printf("for any situations according to the project\n");
-	ft_printf("%%%% & %%d \n");
-	n = ft_printf("That was a test to make sure %%%% was shown\n");
-	ft_printf("the print before was 42 characters so n is: %d\n", n);
-	ft_printf("The n = 42 was a coincidence... or was it? hehehe :)\n");
-	ft_printf("%s\n", h);
 	p = &n;
-	ft_printf("The address of n is: %p\n", p);
-	printf("This is the address using printf: %p\n", p);
-	n = 42424242;
-	ft_printf("This is an example of an int (n = 42424242) into hex: %x\n", n);
-	ft_printf("This is the same example using %%X: %X\n", n);
-	printf("This is the same example using printf: %X\n", n);
+
+	ft_printf("The difference of return value between ft_printf and printf\n");
+	ft_printf("should be 3, for the extra \"%s\" and also +1 on both for \\n\n", b);
+	ft_printf("|------------------------------------------------------------|\n");
+	ft_printf("|                        CHARACTERS                          |\n");
+	ft_printf("|------------------------------------------------------------|\n");
+	size = ft_printf("ft_printf: %c\n", c);
+	ft_printf("return: %d\n", size);
+	size = printf("printf: %c\n", c);
+	printf("return: %d\n", size);
+	ft_printf("|------------------------------------------------------------|\n");
+	ft_printf("|                          STRINGS                           |\n");
+	ft_printf("|------------------------------------------------------------|\n");
+	size = ft_printf("ft_printf: %s\n", h);
+	ft_printf("return: %d\n", size);
+	size = printf("printf: %s\n", h);
+	printf("return: %d\n", size);
+	ft_printf("|------------------------------------------------------------|\n");
+	ft_printf("|                           ADDRESS                          |\n");
+	ft_printf("|------------------------------------------------------------|\n");
+	size = ft_printf("ft_printf: %p\n", p);
+	ft_printf("return: %d\n", size);
+	size = printf("printf: %p\n", p);
+	printf("return: %d\n", size);
+	ft_printf("|------------------------------------------------------------|\n");
+	ft_printf("|                          DECIMALS                          |\n");
+	ft_printf("|------------------------------------------------------------|\n");
+	size = ft_printf("ft_printf: %d\n", 42);
+	ft_printf("return: %d\n", size);
+	size = printf("printf: %d\n", 42);
+	printf("return: %d\n", size);
+	ft_printf("|------------------------------------------------------------|\n");
+	ft_printf("|                      HEXADECIMAL LOWERCASE                 |\n");
+	ft_printf("|------------------------------------------------------------|\n");
+	size = ft_printf("ft_printf: %x\n", 123456789);
+	ft_printf("return: %d\n", size);
+	size = printf("printf: %x\n", 123456789);
+	printf("return: %d\n", size);
+	ft_printf("|------------------------------------------------------------|\n");
+	ft_printf("|                     HEXADECIMAL UPPERCASE                  |\n");
+	ft_printf("|------------------------------------------------------------|\n");
+	size = ft_printf("ft_printf: %X\n", 123456789);
+	ft_printf("return: %d\n", size);
+	size = printf("printf: %X\n", 123456789);
+	printf("return: %d\n", size);
+	ft_printf("|------------------------------------------------------------|\n");
+	ft_printf("|                        PERCENTAGE                          |\n");
+	ft_printf("|------------------------------------------------------------|\n");
+	size = ft_printf("ft_printf: %%\n");
+	ft_printf("return: %d\n", size);
+	size = printf("printf: %%\n");
+	printf("return: %d\n", size);
+	ft_printf("|------------------------------------------------------------|\n");
+	ft_printf("|                           UNSIGNED                         |\n");
+	ft_printf("|------------------------------------------------------------|\n");
 }
+*/

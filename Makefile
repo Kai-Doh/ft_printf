@@ -6,7 +6,7 @@
 #    By: ktiomico <marvin@42lausanne.ch>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/08 16:59:45 by ktiomico          #+#    #+#              #
-#    Updated: 2024/10/08 23:38:58 by ktiomico         ###   ########.fr        #
+#    Updated: 2024/10/09 01:19:48 by ktiomico         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ OBJS =	$(SRCS:.c=.o)
 
 CC =	gcc
 
-CFLAGS = -Wall -Wextra -Werror -I./include
+CFLAGS = -Wall -Wextra -Werror -g -I./include
 
 RM =	rm -rf
 

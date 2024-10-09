@@ -6,7 +6,7 @@
 /*   By: ktiomico <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 09:33:13 by ktiomico          #+#    #+#             */
-/*   Updated: 2024/10/09 09:36:55 by ktiomico         ###   ########.fr       */
+/*   Updated: 2024/10/09 16:25:26 by ktiomico         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,23 +28,36 @@ int	ft_nbr_len(unsigned int n)
 	return (len);
 }
 
-void	ft_putunintnbr(unsigned int n)
+int	ft_putunintnbr(unsigned int n)
 {
+	int	result;
+
 	if (n >= 10)
 	{
-		ft_putunintnbr(n / 10);
-		ft_putunintnbr(n % 10);
+		result = ft_putunintnbr(n / 10);
+		if (result == -1)
+			return (-1);
+		result = ft_putunintnbr(n % 10);
+		if (result == -1)
+			return (-1);
 	}
 	else
-		ft_putchar_fd(n + '0', 1);
+	{
+		result = printchar(n + '0');
+		if (result == -1)
+			return (-1);
+	}
+	return (1);
 }
 
 int	ft_printf_unint(unsigned int n)
 {
-	int		len;
+	int	len;
+	int	result;
 
-	len = 0;
-	ft_putunintnbr(n);
-	len += ft_nbr_len(n);
+	len = ft_nbr_len(n);
+	result = ft_putunintnbr(n);
+	if (result == -1)
+		return (-1);
 	return (len);
 }

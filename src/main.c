@@ -6,7 +6,7 @@
 /*   By: ktiomico <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 09:46:29 by ktiomico          #+#    #+#             */
-/*   Updated: 2024/10/09 10:01:47 by ktiomico         ###   ########.fr       */
+/*   Updated: 2024/10/09 18:02:25 by ktiomico         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ int	main(void)
 	char *b = "ft_";
 	n = 42;
 	p = &n;
+	ft_printf("%i", -10);
 	printf("\033[0;31m");
 	ft_printf("|------------------------------------------------------------|\n");
 	ft_printf("The difference of return value between ft_printf and printf\n");
@@ -103,6 +104,10 @@ int	main(void)
 	ft_printf("return: %d\n", size);
 	size = printf("printf: %%\n");
 	printf("return: %d\n", size);
-
+	size = ft_printf("\001\002\007\v\010\f\r\n");
+	printf("return: %d\n", size);
+	size = write (1, "\001\002\007\v\010\f\r\n", 8);
+	printf("return: %d\n", size);
+	ft_printf("%x", -10);
 	return (0);
 }

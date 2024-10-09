@@ -6,7 +6,7 @@
 /*   By: ktiomico <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 13:56:36 by ktiomico          #+#    #+#             */
-/*   Updated: 2024/10/09 09:48:08 by ktiomico         ###   ########.fr       */
+/*   Updated: 2024/10/09 18:05:36 by ktiomico         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,25 +16,62 @@
 int	format(char type, va_list args)
 {
 	int	print_count;
+	int	result;
 
 	print_count = 0;
 	if (type == 'c')
-		print_count += printchar(va_arg(args, int));
+		result = printchar(va_arg(args, int));
 	else if (type == 's')
-		print_count += printstr(va_arg(args, char *));
+		result = printstr(va_arg(args, char *));
 	else if (type == 'p')
-		print_count += ft_printf_ptr(va_arg(args, unsigned long long));
+		result = ft_printf_ptr(va_arg(args, unsigned long long));
 	else if (type == 'd' || type == 'i')
-		print_count += printnbr(va_arg(args, int));
+		result = printnbr(va_arg(args, int));
 	else if (type == 'u')
-		print_count += ft_printf_unint(va_arg(args, unsigned int));
+		result = ft_printf_unint(va_arg(args,unsigned int));
 	else if (type == 'x')
-		print_count += ft_printf_hex(va_arg(args, unsigned int));
+		result = ft_printf_hex(va_arg(args, unsigned int));
 	else if (type == 'X')
-		print_count += ft_printf_hexupper(va_arg(args, unsigned int));
+		result = ft_printf_hexupper(va_arg(args, unsigned int));
 	else if (type == '%')
-		print_count += printpercent();
-	return (print_count);
+		result = printpercent();
+	else
+		return (-1);
+	if (result == -1)
+		return (-1);
+	return (print_count + result);
+}
+
+int	handle_error(int result, va_list *args)
+{
+	if (result == -1)
+	{
+		va_end(*args);
+		return (-1);
+	}
+	return (result);
+}
+
+int	process_format(const char *type, unsigned int *i, va_list *args)
+{
+	int	result;
+
+	result = format(type[*i + 1], *args);
+	if (result != -1)
+		(*i)++;
+	else
+		result = handle_error(result, args);
+	return (result);
+}
+
+int	process_char(const char c, va_list *args)
+{
+	int	result;
+
+	result = printchar(c);
+	if (result == -1)
+		return (handle_error(result, args));
+	return (1);
 }
 
 int	ft_printf(const char *type, ...)
@@ -42,6 +79,7 @@ int	ft_printf(const char *type, ...)
 	va_list			args;
 	unsigned int	i;
 	int				print_count;
+	int				result;
 
 	print_count = 0;
 	va_start(args, type);
@@ -49,15 +87,12 @@ int	ft_printf(const char *type, ...)
 	while (type[i])
 	{
 		if (type[i] == '%')
-		{
-			print_count += format(type[i + 1], args);
-			i++;
-		}
+			result = process_format(type, &i, &args);
 		else
-		{
-			ft_putchar_fd(type[i], 1);
-			print_count++;
-		}
+			result = process_char(type[i], &args);
+		if (result == -1)
+			return (-1);
+		print_count += result;
 		i++;
 	}
 	va_end(args);

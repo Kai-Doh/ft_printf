@@ -6,7 +6,7 @@
 /*   By: ktiomico <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 13:56:36 by ktiomico          #+#    #+#             */
-/*   Updated: 2024/10/09 18:05:36 by ktiomico         ###   ########.fr       */
+/*   Updated: 2024/10/09 21:26:30 by ktiomico         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,8 @@
 
 int	format(char type, va_list args)
 {
-	int	print_count;
 	int	result;
 
-	print_count = 0;
 	if (type == 'c')
 		result = printchar(va_arg(args, int));
 	else if (type == 's')
@@ -28,7 +26,7 @@ int	format(char type, va_list args)
 	else if (type == 'd' || type == 'i')
 		result = printnbr(va_arg(args, int));
 	else if (type == 'u')
-		result = ft_printf_unint(va_arg(args,unsigned int));
+		result = ft_printf_unint(va_arg(args, unsigned int));
 	else if (type == 'x')
 		result = ft_printf_hex(va_arg(args, unsigned int));
 	else if (type == 'X')
@@ -39,17 +37,13 @@ int	format(char type, va_list args)
 		return (-1);
 	if (result == -1)
 		return (-1);
-	return (print_count + result);
+	return (result);
 }
 
-int	handle_error(int result, va_list *args)
+int	ft_error(va_list *args)
 {
-	if (result == -1)
-	{
-		va_end(*args);
-		return (-1);
-	}
-	return (result);
+	va_end(*args);
+	return (-1);
 }
 
 int	process_format(const char *type, unsigned int *i, va_list *args)
@@ -60,7 +54,7 @@ int	process_format(const char *type, unsigned int *i, va_list *args)
 	if (result != -1)
 		(*i)++;
 	else
-		result = handle_error(result, args);
+		result = ft_error(args);
 	return (result);
 }
 
@@ -70,7 +64,7 @@ int	process_char(const char c, va_list *args)
 
 	result = printchar(c);
 	if (result == -1)
-		return (handle_error(result, args));
+		return (ft_error(args));
 	return (1);
 }
 

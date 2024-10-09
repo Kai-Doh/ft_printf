@@ -6,7 +6,7 @@
 /*   By: ktiomico <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 14:03:09 by ktiomico          #+#    #+#             */
-/*   Updated: 2024/10/09 21:27:11 by ktiomico         ###   ########.fr       */
+/*   Updated: 2024/10/09 23:27:25 by ktiomico         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,15 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdarg.h>
+
+typedef struct s_flags
+{
+	int		left;
+	int		zero;
+	int		width;
+	int		precision;
+	int		star;
+}	t_flags;
 
 int		ft_printf(const char *type, ...);
 int		printstr(char *str);

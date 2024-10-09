@@ -6,7 +6,7 @@
 /*   By: ktiomico <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 14:03:09 by ktiomico          #+#    #+#             */
-/*   Updated: 2024/10/08 23:24:51 by ktiomico         ###   ########.fr       */
+/*   Updated: 2024/10/09 09:40:45 by ktiomico         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,8 @@ int		ft_printf_ptr(unsigned long long address);
 int		ft_printf_hex(unsigned int n);
 int		ft_printf_hexupper(unsigned int n);
 void	ft_put_hexupper(unsigned long long nbr);
+int		ft_printf_unint(unsigned int n);
+int		ft_nbr_len(unsigned int n);
+void	ft_putunintnbr(unsigned int n);
 
 #endif

@@ -1,47 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render_str.c                                       :+:      :+:    :+:   */
+/*   render_unint.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ktiomico <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/10 14:27:07 by ktiomico          #+#    #+#             */
-/*   Updated: 2024/10/10 23:34:27 by ktiomico         ###   ########.fr       */
+/*   Created: 2024/10/10 21:39:33 by ktiomico          #+#    #+#             */
+/*   Updated: 2024/10/11 00:02:54 by ktiomico         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include "ft_printf.h"
+#include "libft.h"
 
-void	str_null(t_data *data)
+void	ft_printf_unint(t_data *data, unsigned int nbr)
 {
-	char	*str;
+	int		width;
 
-	str = "(null)";
-	string_print(data, str);
-	return ;
-}
-
-void	print_str(t_data *data, const char *str)
-{
-	int	width;
-
-	if (!str)
-		str = "(null)";
-	width = data->format.width_value - (int)ft_strlen(str);
+	width = data->format.width_value - numlen(nbr);
 	if (width > 0)
 	{
 		if (data->format.left_justified)
 		{
-			string_print(data, str);
+			sign_space(data, nbr);
+			print_nbr(data, nbr);
 			zero_space(data, width);
 		}
 		else
 		{
 			zero_space(data, width);
-			string_print(data, str);
+			sign_space(data, nbr);
+			print_nbr(data, nbr);
 		}
 	}
 	else
-		string_print(data, str);
+	{
+		sign_space(data, nbr);
+		print_nbr(data, nbr);
+	}
 }

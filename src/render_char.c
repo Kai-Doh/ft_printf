@@ -6,14 +6,14 @@
 /*   By: ktiomico <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 02:57:05 by ktiomico          #+#    #+#             */
-/*   Updated: 2024/10/10 15:56:33 by ktiomico         ###   ########.fr       */
+/*   Updated: 2024/10/10 23:32:33 by ktiomico         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include "libft.h"
 
-void	print_char(t_data *data, int c)
+void	ft_printf_char(t_data *data, int c)
 {
 	int	width;
 
@@ -29,9 +29,8 @@ void	print_char(t_data *data, int c)
 		{
 			zero_space(data, width);
 			write_print(data, c);
-
 		}
 	}
 	else
-			write_print(data, c);
+		write_print(data, c);
 }

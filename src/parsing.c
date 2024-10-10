@@ -6,7 +6,7 @@
 /*   By: ktiomico <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 01:56:18 by ktiomico          #+#    #+#             */
-/*   Updated: 2024/10/10 15:45:49 by ktiomico         ###   ########.fr       */
+/*   Updated: 2024/10/10 23:33:31 by ktiomico         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ static int	pf_atoi(const char **format)
 		value = (value * 10) + (*(*format)++ - '0');
 	return (value);
 }
+
 static void	parse_flags(t_data *data, const char **format)
 {
 	char	flag;
@@ -42,12 +43,7 @@ static void	parse_flags(t_data *data, const char **format)
 		(*format)++;
 	}
 }
-/*
-static void	parse_width(t_data *data)
-{
 
-}
-*/
 static void	get_value(t_data *data, int *value, const char **format)
 {
 	if (**format == '*')

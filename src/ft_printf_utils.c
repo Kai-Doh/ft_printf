@@ -6,7 +6,7 @@
 /*   By: ktiomico <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 02:08:47 by ktiomico          #+#    #+#             */
-/*   Updated: 2024/10/10 18:00:20 by ktiomico         ###   ########.fr       */
+/*   Updated: 2024/10/11 01:04:22 by ktiomico         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	string_print(t_data *data, const char *str)
 	i = 0;
 	if (data->format.precision_value == 0)
 		return (0);
-	if (data->format.precision_value)
+	else if (data->format.precision_value > 0)
 	{
 		while (i++ < data->format.precision_value)
 		{
@@ -51,7 +51,7 @@ int	string_print(t_data *data, const char *str)
 				return (0);
 		}
 	}
-	else
+	else if (data->format.precision_value == -1)
 	{
 		while (*str)
 		{
@@ -68,43 +68,10 @@ void	fill_space(t_data *data, const char c, int size)
 	int	i;
 
 	i = 0;
-	while(i < size)
+	while (i < size)
 	{
 		if (write_print(data, c) == -1)
 			return ;
 		i++;
 	}
-}
-
-void	zero_space(t_data *data, int size)
-{
-	if (data->format.zero)
-		fill_space(data, '0', size);
-	else
-		fill_space(data, ' ', size);
-	return ;
-}
-
-void	str_null(t_data *data)
-{
-	char	*str;
-
-	str = "(null)";
-	string_print(data, str);
-	return ;
-}
-
-int	numlen(long long nbr)
-{
-	int	len;
-
-	len = 0;
-	if (nbr <= 0)
-		len++;
-	while (nbr)
-	{
-		nbr /= 10;
-		len++;
-	}
-	return (len);
 }

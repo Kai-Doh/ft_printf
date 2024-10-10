@@ -6,7 +6,7 @@
 /*   By: ktiomico <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 01:18:46 by ktiomico          #+#    #+#             */
-/*   Updated: 2024/10/10 03:06:59 by ktiomico         ###   ########.fr       */
+/*   Updated: 2024/10/10 10:01:19 by ktiomico         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,9 @@ void	render_format(t_data *data)
 	else if ('x' == specifier || 'X' == specifier)
 	else if ('p' == specifier)
 }
-static int	init_data(t_data *data, const char *format)
+static int	init_data(t_data *data)
 {
 	data->chars_written = 0;
-	data->s = format;
-	data->buf = ft_calloc(BUF_SIZE, sizeof(char));
-	if (data->buf == NULL)
-		return (MALLOC_ERROR);
-	data->buffer_index = 0;
 	return (OK);
 }
 int	ft_printf(const char *format, ...)
@@ -47,19 +42,18 @@ int	ft_printf(const char *format, ...)
 	va_start(data.ap, format);
 	if (init_data(&data, format))
 		return (-1);
-	while (*data.s)
+	while (*format)
 	{
-		if (*data.s == '%' && *(++data.s))
+		if (*format == '%' && *(++format))
 		{
-			if (parse_format(&data))
+			if (format_parsing(&data, *format))
 				return (PARSE_ERROR);
 			render_format(&data);
 		}
 		else
-		{
-			write_buf(&data, *data.s);
-		}
-		++data.s;
+			if (write_print(&data, *format) == -1)
+				return (-1);
+		++format;
 	}
 	flush_buf(&data);
 	va_end(data.ap);

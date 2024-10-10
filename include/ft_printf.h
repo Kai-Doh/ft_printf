@@ -6,7 +6,7 @@
 /*   By: ktiomico <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 14:03:09 by ktiomico          #+#    #+#             */
-/*   Updated: 2024/10/10 02:35:10 by ktiomico         ###   ########.fr       */
+/*   Updated: 2024/10/10 10:01:19 by ktiomico         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,8 @@ typedef enum
 
 typedef struct	s_data
 {
-	const char	*s;
 	va_list		ap;
 	int			chars_written;
-	char		*buf;
-	int			buffer_index;
 	t_format	format;
 }	t_data;
 

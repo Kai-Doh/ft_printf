@@ -5,40 +5,49 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ktiomico <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/10 12:05:00 by assistant         #+#    #+#             */
-/*   Updated: 2024/10/10 00:07:10 by ktiomico         ###   ########.fr       */
+/*   Created: 2024/10/10 01:18:46 by ktiomico          #+#    #+#             */
+/*   Updated: 2024/10/10 01:55:31 by ktiomico         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include "libft.h"
 
-int	ft_printf(const char *fmt, ...)
+static int	init_data(t_data *data, const char *format)
 {
-	va_list		ap;
-	int			len;
-	t_format	f;
-	int			ret;
+	data->chars_written = 0;
+	data->s = format;
+	data->buf = ft_calloc(BUF_SIZE, sizeof(char));
+	if (data->buf == NULL)
+		return (MALLOC_ERROR);
+	data->buffer_index = 0;
+	return (OK);
+}
+int	ft_printf(const char *format, ...)
+{
+	t_data	data;
 
-	len = 0;
-	va_start(ap, fmt);
-	while (*fmt)
+	va_start(data.ap, format);
+	if (init_data(&data, format))
+		return (-1);
+	while (*data.s)
 	{
-		if (*fmt == '%' && *(fmt + 1))
+		if (*data.s == '%' && *(++data.s))
 		{
-			fmt++;
-			if (ft_parse_format(&fmt, &f, ap) == -1)
-				return (-1);
-			ret = ft_handle_conversion(&f, ap, &len);
-			if (ret == -1)
-				return (-1);
+			if (parse_format(&data))
+			{
+				return (PARSE_ERROR);
+			}
+			render_format(&data);
 		}
 		else
 		{
-			if (ft_putchar(*fmt++) == -1)
-				return (-1);
-			len++;
+			write_buf(&data, *data.s);
 		}
+		++data.s;
 	}
-	va_end(ap);
-	return (len);
+	flush_buf(&data);
+	va_end(data.ap);
+	free(data.buf);
+	return (data.chars_written);
 }

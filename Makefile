@@ -6,22 +6,23 @@
 #    By: ktiomico <marvin@42lausanne.ch>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/08 16:59:45 by ktiomico          #+#    #+#              #
-#    Updated: 2024/10/09 09:50:41 by ktiomico         ###   ########.fr        #
+#    Updated: 2024/10/10 17:46:13 by ktiomico         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME =	libftprintf.a
 
-SRCS =	src/ft_printf_hex.c \
-		src/ft_printf_pointer.c \
-		src/ft_printf.c \
+SRCS =	src/ft_printf.c \
 		src/ft_printf_utils.c \
-		src/ft_printf_unsigned_int.c \
-		libft/ft_itoa.c \
-		libft/ft_putchar_fd.c \
-		libft/ft_putstr_fd.c
+		src/parsing.c \
+		src/render_char.c \
+		src/render_str.c \
+		libft/ft_memset.c \
+		libft/ft_strlen.c \
+		src/render_nbr.c \
+		libft/ft_itoa.c
 
-MAIN =	src/main.c
+MAIN =	main.c
 
 OBJS =	$(SRCS:.c=.o)
 

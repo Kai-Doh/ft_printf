@@ -6,29 +6,29 @@
 /*   By: ktiomico <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 01:56:18 by ktiomico          #+#    #+#             */
-/*   Updated: 2024/10/10 10:00:53 by ktiomico         ###   ########.fr       */
+/*   Updated: 2024/10/10 15:45:49 by ktiomico         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "ft_printf.h"
 #include "libft.h"
 
-static int	pf_atoi(t_data *data)
+static int	pf_atoi(const char **format)
 {
 	int	value;
 
 	value = 0;
-	while (check(NUMBERS, *data->s))
-		value = (value * 10) + (*data->s++ - '0');
+	while (check(NUMBERS, **format))
+		value = (value * 10) + (*(*format)++ - '0');
 	return (value);
 }
-static void parse_flags(t_data *data)
+static void	parse_flags(t_data *data, const char **format)
 {
 	char	flag;
 
-	while (check(FLAGS, *data->s))
+	while (check(FLAGS, **format))
 	{
-		flag = *data->s;
+		flag = **format;
 		if ('0' == flag)
 			data->format.zero = 1;
 		else if ('+' == flag)
@@ -39,39 +39,39 @@ static void parse_flags(t_data *data)
 			data->format.hashtag = 1;
 		else if ('-' == flag)
 			data->format.left_justified = 1;
-		data->s++;
+		(*format)++;
 	}
 }
-
+/*
 static void	parse_width(t_data *data)
 {
 
 }
-
-static void	get_value(t_data *data, int *value, const char *format)
+*/
+static void	get_value(t_data *data, int *value, const char **format)
 {
-	if (*data->s == '*')
+	if (**format == '*')
 	{
 		*value = va_arg(data->ap, int);
-		format;
+		(*format)++;
 		return ;
 	}
-	*value = ft_atoi(data)
+	*value = pf_atoi(format);
 }
 
-int	format_parsing(t_data *data, const char *format)
+int	format_parsing(t_data *data, const char **format)
 {
 	ft_memset(&data->format, 0, sizeof(t_format));
 	data->format.precision_value = -1;
-	parse_flags(data);
-	get_value(data, &data->format.width_value)
-	if (*format == '.' && (++format))
-		get_value(data, &data->format.precision_value, &format);
-	if (!check(TYPE, *format))
+	parse_flags(data, format);
+	get_value(data, &data->format.width_value, format);
+	if (**format == '.' && ++(*format))
+		get_value(data, &data->format.precision_value, format);
+	if (!check(TYPE, **format))
 		return (PARSE_ERROR);
 	else
 	{
-		data->format.specifier = *data->s;
+		data->format.specifier = **format;
 		if (check("diu", data->format.specifier))
 			data->format.base = BASE_10;
 		else if (check("xXp", data->format.specifier))

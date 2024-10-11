@@ -6,17 +6,12 @@
 /*   By: ktiomico <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 12:50:23 by ktiomico          #+#    #+#             */
-/*   Updated: 2024/10/11 20:17:26 by ktiomico         ###   ########.fr       */
+/*   Updated: 2024/10/11 21:37:40 by ktiomico         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include "ft_printf.h"
 #include <stdio.h>
-#include <limits.h>
-#include <stdio.h>   // For standard printf (used for comparison)
-#include <limits.h>  // For INT_MAX, INT_MIN, UINT_MAX
-#include <stddef.h>  // For NULL
 
 // Declare your ft_printf function here
 // For example:
@@ -33,6 +28,7 @@ int main() {
 //weird behavior between printf and ft_printf
 */
 //	printf("");
+	ft_printf("%u", -10);
 	ft_printf("[%3.6s]", "\0");
 	printf("[%3.6s]", "\0");
 

@@ -6,7 +6,7 @@
 /*   By: ktiomico <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 01:18:46 by ktiomico          #+#    #+#             */
-/*   Updated: 2024/10/10 23:32:53 by ktiomico         ###   ########.fr       */
+/*   Updated: 2024/10/11 15:31:31 by ktiomico         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	render_format(t_data *data)
 	else if ('x' == type || 'X' == type)
 		ft_printf_hex(data, va_arg(data->ap, unsigned int));
 	else if ('p' == type)
-		ft_printf_add(data, va_arg(data->ap, unsigned long long));
+		ft_printf_add(data, (void *)va_arg(data->ap, void *));
 }
 
 static int	init_data(t_data *data)

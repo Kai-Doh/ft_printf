@@ -6,7 +6,7 @@
 /*   By: ktiomico <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 01:56:18 by ktiomico          #+#    #+#             */
-/*   Updated: 2024/10/10 23:33:31 by ktiomico         ###   ########.fr       */
+/*   Updated: 2024/10/11 14:22:29 by ktiomico         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,16 +66,6 @@ int	format_parsing(t_data *data, const char **format)
 	if (!check(TYPE, **format))
 		return (PARSE_ERROR);
 	else
-	{
 		data->format.specifier = **format;
-		if (check("diu", data->format.specifier))
-			data->format.base = BASE_10;
-		else if (check("xXp", data->format.specifier))
-		{
-			data->format.base = BASE_16;
-			if ('X' == data->format.specifier)
-				data->format.upper_case = 1;
-		}
-	}
 	return (OK);
 }

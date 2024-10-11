@@ -6,7 +6,7 @@
 /*   By: ktiomico <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 22:38:21 by ktiomico          #+#    #+#             */
-/*   Updated: 2024/10/11 00:10:55 by ktiomico         ###   ########.fr       */
+/*   Updated: 2024/10/11 15:41:06 by ktiomico         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,17 +43,17 @@ void	print_nil(t_data *data)
 	return ;
 }
 
-void	format_add(t_data *data, unsigned long long address, int width)
+void	format_add(t_data *data, unsigned long long addr_value, int width)
 {
-	if (address == 0)
+	if (addr_value == 0)
 		print_nil(data);
-	else if (width > 1 && address)
+	else if (width > 1 && addr_value)
 	{
 		if (data->format.left_justified)
 		{
 			write_print(data, '0');
 			write_print(data, 'x');
-			print_hex(data, address);
+			print_hex(data, addr_value);
 			fill_space(data, ' ', width);
 		}
 		else
@@ -61,23 +61,25 @@ void	format_add(t_data *data, unsigned long long address, int width)
 			fill_space(data, ' ', width);
 			write_print(data, '0');
 			write_print(data, 'x');
-			print_hex(data, address);
+			print_hex(data, addr_value);
 		}
 	}
 	else
 	{
 		write_print(data, '0');
 		write_print(data, 'x');
-		print_hex(data, address);
+		print_hex(data, addr_value);
 	}
 }
 
-void	ft_printf_add(t_data *data, unsigned long long address)
+void	ft_printf_add(t_data *data, void *address)
 {
 	int	width;
 	int	count_hex;
+	unsigned long long addr_value;
 
-	count_hex = hex_length(address);
-	width = data->format.width_value - count_hex + 2;
-	format_add(data, address, width);
+	addr_value = (unsigned long long)address;
+	count_hex = hex_length(addr_value);
+	width = data->format.width_value - (count_hex + 2);
+	format_add(data, addr_value, width);
 }

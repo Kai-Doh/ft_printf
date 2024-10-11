@@ -6,7 +6,7 @@
 /*   By: ktiomico <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 02:08:47 by ktiomico          #+#    #+#             */
-/*   Updated: 2024/10/11 01:04:22 by ktiomico         ###   ########.fr       */
+/*   Updated: 2024/10/11 12:54:03 by ktiomico         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	string_print(t_data *data, const char *str)
 		return (0);
 	else if (data->format.precision_value > 0)
 	{
-		while (i++ < data->format.precision_value)
+		while (i++ < data->format.precision_value && *str)
 		{
 			write_print(data, *str);
 			str++;

@@ -6,14 +6,14 @@
 /*   By: ktiomico <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 21:37:43 by ktiomico          #+#    #+#             */
-/*   Updated: 2024/10/11 01:27:37 by ktiomico         ###   ########.fr       */
+/*   Updated: 2024/10/11 15:37:36 by ktiomico         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "ft_printf.h"
 
-void	print_hex(t_data *data, unsigned int nbr)
+void	print_hex(t_data *data, unsigned long long nbr)
 {
 	if (nbr >= 16)
 	{
@@ -51,7 +51,7 @@ void	format_hex(t_data *data, unsigned int nbr, int width)
 	{
 		if (data->format.left_justified)
 		{
-			print_hex_hash(data);
+			print_hex_hash(data, nbr);
 			print_prec_zero(data);
 			print_hex(data, nbr);
 			zero_space(data, width);
@@ -59,14 +59,14 @@ void	format_hex(t_data *data, unsigned int nbr, int width)
 		else
 		{
 			zero_space(data, width);
-			print_hex_hash(data);
+			print_hex_hash(data, nbr);
 			print_prec_zero(data);
 			print_hex(data, nbr);
 		}
 	}
 	else
 	{
-		print_hex_hash(data);
+		print_hex_hash(data, nbr);
 		print_prec_zero(data);
 		print_hex(data, nbr);
 	}
@@ -78,7 +78,7 @@ void	format_hex_upp(t_data *data, unsigned int nbr, int width)
 	{
 		if (data->format.left_justified)
 		{
-			print_hex_hashup(data);
+			print_hex_hashup(data, nbr);
 			print_prec_zero(data);
 			print_hex_upp(data, nbr);
 			zero_space(data, width);
@@ -86,14 +86,14 @@ void	format_hex_upp(t_data *data, unsigned int nbr, int width)
 		else
 		{
 			zero_space(data, width);
-			print_hex_hashup(data);
+			print_hex_hashup(data, nbr);
 			print_prec_zero(data);
 			print_hex_upp(data, nbr);
 		}
 	}
 	else
 	{
-		print_hex_hashup(data);
+		print_hex_hashup(data, nbr);
 		print_prec_zero(data);
 		print_hex_upp(data, nbr);
 	}

@@ -6,7 +6,7 @@
 #    By: ktiomico <marvin@42lausanne.ch>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/08 16:59:45 by ktiomico          #+#    #+#              #
-#    Updated: 2024/10/11 00:45:39 by ktiomico         ###   ########.fr        #
+#    Updated: 2024/10/11 02:15:41 by ktiomico         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,6 +41,14 @@ RM =	rm -rf
 EXE =	ft_printf
 
 all:	$(NAME)
+
+$(NAME):	$(OBJS)
+	ar rc $(NAME) $(OBJS)
+
+%.o:	%.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
+bonus:	$(NAME)
 
 $(NAME):	$(OBJS)
 	ar rc $(NAME) $(OBJS)

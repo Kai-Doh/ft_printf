@@ -6,7 +6,7 @@
 /*   By: ktiomico <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 14:03:09 by ktiomico          #+#    #+#             */
-/*   Updated: 2024/10/11 00:47:48 by ktiomico         ###   ########.fr       */
+/*   Updated: 2024/10/11 15:38:00 by ktiomico         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,11 +63,11 @@ void	sign_space(t_data *data, long long nbr);
 void	print_nbr(t_data *data, long long nbr);
 int		hex_length(unsigned long long n);
 void	ft_printf_hex(t_data *data, unsigned int nbr);
-void	ft_printf_add(t_data *data, unsigned long long address);
-void	print_hex(t_data *data, unsigned int nbr);
+void	ft_printf_add(t_data *data, void *address);
+void	print_hex(t_data *data, unsigned long long nbr);
 void	fill_space(t_data *data, const char c, int size);
 void	print_prec_zero(t_data *data);
-void	print_hex_hash(t_data *data);
-void	print_hex_hashup(t_data *data);
-
+void	print_hex_hash(t_data *data, unsigned int nbr);
+void	print_hex_hashup(t_data *data, unsigned int nbr);
+void	sign_space(t_data *data, long long nbr);
 #endif

@@ -6,7 +6,7 @@
 /*   By: ktiomico <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 22:38:21 by ktiomico          #+#    #+#             */
-/*   Updated: 2024/10/11 15:41:06 by ktiomico         ###   ########.fr       */
+/*   Updated: 2024/10/11 17:35:10 by ktiomico         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	format_add(t_data *data, unsigned long long addr_value, int width)
 {
 	if (addr_value == 0)
 		print_nil(data);
-	else if (width > 1 && addr_value)
+	else if (width > 0 && addr_value)
 	{
 		if (data->format.left_justified)
 		{
@@ -74,9 +74,9 @@ void	format_add(t_data *data, unsigned long long addr_value, int width)
 
 void	ft_printf_add(t_data *data, void *address)
 {
-	int	width;
-	int	count_hex;
-	unsigned long long addr_value;
+	int					width;
+	int					count_hex;
+	unsigned long long	addr_value;
 
 	addr_value = (unsigned long long)address;
 	count_hex = hex_length(addr_value);

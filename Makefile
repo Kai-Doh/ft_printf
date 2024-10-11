@@ -6,7 +6,7 @@
 #    By: ktiomico <marvin@42lausanne.ch>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/08 16:59:45 by ktiomico          #+#    #+#              #
-#    Updated: 2024/10/11 02:15:41 by ktiomico         ###   ########.fr        #
+#    Updated: 2024/10/11 18:38:09 by ktiomico         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,8 @@ SRCS =	src/ft_printf.c \
 		libft/ft_memset.c \
 		libft/ft_strlen.c \
 		src/render_nbr.c \
-		libft/ft_itoa.c
+		libft/ft_itoa.c \
+		libft/ft_memcmp.c
 
 MAIN =	main.c
 
@@ -48,10 +49,7 @@ $(NAME):	$(OBJS)
 %.o:	%.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
-bonus:	$(NAME)
-
-$(NAME):	$(OBJS)
-	ar rc $(NAME) $(OBJS)
+bonus:	clean fclean all
 
 %.o:	%.c
 	$(CC) $(CFLAGS) -c $< -o $@

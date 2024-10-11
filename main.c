@@ -6,7 +6,7 @@
 /*   By: ktiomico <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 12:50:23 by ktiomico          #+#    #+#             */
-/*   Updated: 2024/10/11 15:42:24 by ktiomico         ###   ########.fr       */
+/*   Updated: 2024/10/11 20:17:26 by ktiomico         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,16 @@ int main() {
     ft_printf("[%0d]\n]why does this go down here7", -1);
 //weird behavior between printf and ft_printf
 */
-	printf(" [%-2p] \n", (void *)-2147483648);
-	ft_printf(" [%-2p] \n", (void *)-2147483648);
-    return (0);
-}
+//	printf("");
+	ft_printf("[%3.6s]", "\0");
+	printf("[%3.6s]", "\0");
 
+//	ft_printf("return of printf: %d\nreturn of ft_printf: \n", b);
+  //  return (0);
+}
+// mandatory p 0
+// - 27 29
+//
 //	printf("[%.3d]\n", -1);
 //	ft_printf("[%.3d]\n", -1);
 //	printf("[%.4d]\n", -1);

@@ -6,14 +6,14 @@
 /*   By: ktiomico <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 01:18:46 by ktiomico          #+#    #+#             */
-/*   Updated: 2024/10/11 15:31:31 by ktiomico         ###   ########.fr       */
+/*   Updated: 2024/10/11 17:51:14 by ktiomico         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include "libft.h"
 
-void	render_format(t_data *data)
+void	render_conversion(t_data *data)
 {
 	char	type;
 
@@ -53,7 +53,7 @@ int	ft_printf(const char *format, ...)
 		{
 			if (format_parsing(&data, &format))
 				return (PARSE_ERROR);
-			render_format(&data);
+			render_conversion(&data);
 		}
 		else
 			if (write_print(&data, *format) == -1)

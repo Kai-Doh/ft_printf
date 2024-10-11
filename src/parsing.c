@@ -6,7 +6,7 @@
 /*   By: ktiomico <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 01:56:18 by ktiomico          #+#    #+#             */
-/*   Updated: 2024/10/11 14:22:29 by ktiomico         ###   ########.fr       */
+/*   Updated: 2024/10/11 18:19:58 by ktiomico         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,14 +44,8 @@ static void	parse_flags(t_data *data, const char **format)
 	}
 }
 
-static void	get_value(t_data *data, int *value, const char **format)
+static void	get_value(int *value, const char **format)
 {
-	if (**format == '*')
-	{
-		*value = va_arg(data->ap, int);
-		(*format)++;
-		return ;
-	}
 	*value = pf_atoi(format);
 }
 
@@ -60,9 +54,9 @@ int	format_parsing(t_data *data, const char **format)
 	ft_memset(&data->format, 0, sizeof(t_format));
 	data->format.precision_value = -1;
 	parse_flags(data, format);
-	get_value(data, &data->format.width_value, format);
+	get_value(&data->format.width_value, format);
 	if (**format == '.' && ++(*format))
-		get_value(data, &data->format.precision_value, format);
+		get_value(&data->format.precision_value, format);
 	if (!check(TYPE, **format))
 		return (PARSE_ERROR);
 	else

@@ -6,7 +6,7 @@
 #    By: ktiomico <marvin@42lausanne.ch>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/08 16:59:45 by ktiomico          #+#    #+#              #
-#    Updated: 2024/10/11 21:43:17 by ktiomico         ###   ########.fr        #
+#    Updated: 2024/10/12 00:41:32 by ktiomico         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,8 @@ SRCS =	src/ft_printf.c \
 		libft/ft_strlen.c \
 		src/render_nbr.c \
 		libft/ft_itoa.c \
-		libft/ft_memcmp.c
+		libft/ft_memcmp.c \
+		libft/ft_strncmp.c
 
 MAIN =	main.c
 

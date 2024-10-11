@@ -6,7 +6,7 @@
 /*   By: ktiomico <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 14:27:07 by ktiomico          #+#    #+#             */
-/*   Updated: 2024/10/11 20:31:37 by ktiomico         ###   ########.fr       */
+/*   Updated: 2024/10/12 00:43:38 by ktiomico         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,26 +44,33 @@ void	struct_str(t_data *data, const char *str, int width)
 void	print_str(t_data *data, const char *str)
 {
 	int	width;
+	int	str_len;
 
-	width = data->format.width_value;
-	if (width == 0 && str && str[0] == '\0')
-		return ;
+	// Handle NULL pointer by setting str to "(null)"
 	if (!str)
 		str = "(null)";
-	if (data->format.precision_value != -1
-		&& data->format.precision_value > width && width != 0)
+
+	// Calculate the effective string length based on precision.
+	if (data->format.precision_value != -1)
 	{
-		width = 0;
-	}
-	else if (data->format.precision_value != -1
-		&& data->format.precision_value < width && width != 0)
-	{
-		if (data->format.precision_value < (int)ft_strlen(str))
-			width = data->format.width_value - data->format.precision_value;
+		// If precision is zero, treat it as empty.
+		if (data->format.precision_value == 0)
+			str_len = 0;
+		else if (data->format.precision_value < (int)ft_strlen(str))
+			str_len = data->format.precision_value;
 		else
-			width = data->format.width_value - (int)ft_strlen(str);
+			str_len = (int)ft_strlen(str);
 	}
 	else
-		width = data->format.width_value - (int)ft_strlen(str);
+	{
+		str_len = (int)ft_strlen(str);
+	}
+
+	// Calculate the width adjustment.
+	width = data->format.width_value - str_len;
+	if (width < 0)
+		width = 0;
+
+	// Call the function to handle the formatted output.
 	struct_str(data, str, width);
 }

@@ -6,7 +6,7 @@
 /*   By: ktiomico <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 21:37:43 by ktiomico          #+#    #+#             */
-/*   Updated: 2024/10/11 15:37:36 by ktiomico         ###   ########.fr       */
+/*   Updated: 2024/10/12 00:26:56 by ktiomico         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,17 +106,16 @@ void	ft_printf_hex(t_data *data, unsigned int nbr)
 
 	width = data->format.width_value;
 	count_hex = hex_length(nbr);
-	if (data->format.precision_value == width)
-		width = 0;
 	if (data->format.precision_value > 0)
 		data->format.precision_value -= count_hex;
 	if (data->format.precision_value < 0)
 		data->format.precision_value = 0;
-	if (data->format.hashtag == 1)
+	if (data->format.hashtag == 1 && nbr != 0)
 		count_hex += 2;
-	if (width != 0)
-		width = data->format.width_value - count_hex
-			- data->format.precision_value;
+	if (width > 0)
+		width -= count_hex + data->format.precision_value;
+	if (width < 0)
+		width = 0;
 	if (data->format.specifier == 'X')
 		format_hex_upp(data, nbr, width);
 	else

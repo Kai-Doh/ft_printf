@@ -5,90 +5,61 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ktiomico <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/05 13:56:36 by ktiomico          #+#    #+#             */
-/*   Updated: 2024/10/09 21:26:30 by ktiomico         ###   ########.fr       */
+/*   Created: 2024/10/10 01:18:46 by ktiomico          #+#    #+#             */
+/*   Updated: 2024/10/11 17:51:14 by ktiomico         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include "libft.h"
 
-int	format(char type, va_list args)
+void	render_conversion(t_data *data)
 {
-	int	result;
+	char	type;
 
-	if (type == 'c')
-		result = printchar(va_arg(args, int));
-	else if (type == 's')
-		result = printstr(va_arg(args, char *));
-	else if (type == 'p')
-		result = ft_printf_ptr(va_arg(args, unsigned long long));
-	else if (type == 'd' || type == 'i')
-		result = printnbr(va_arg(args, int));
-	else if (type == 'u')
-		result = ft_printf_unint(va_arg(args, unsigned int));
-	else if (type == 'x')
-		result = ft_printf_hex(va_arg(args, unsigned int));
-	else if (type == 'X')
-		result = ft_printf_hexupper(va_arg(args, unsigned int));
-	else if (type == '%')
-		result = printpercent();
-	else
+	type = data->format.specifier;
+	if ('%' == type)
+		ft_printf_char(data, '%');
+	else if ('c' == type)
+		ft_printf_char(data, va_arg(data->ap, int));
+	else if ('s' == type)
+		print_str(data, va_arg(data->ap, char *));
+	else if ('d' == type || 'i' == type)
+		ft_printf_int(data, va_arg(data->ap, int));
+	else if ('u' == type)
+		ft_printf_unint(data, va_arg(data->ap, unsigned int));
+	else if ('x' == type || 'X' == type)
+		ft_printf_hex(data, va_arg(data->ap, unsigned int));
+	else if ('p' == type)
+		ft_printf_add(data, (void *)va_arg(data->ap, void *));
+}
+
+static int	init_data(t_data *data)
+{
+	data->chars_written = 0;
+	return (OK);
+}
+
+int	ft_printf(const char *format, ...)
+{
+	t_data	data;
+
+	va_start(data.ap, format);
+	if (init_data(&data))
 		return (-1);
-	if (result == -1)
-		return (-1);
-	return (result);
-}
-
-int	ft_error(va_list *args)
-{
-	va_end(*args);
-	return (-1);
-}
-
-int	process_format(const char *type, unsigned int *i, va_list *args)
-{
-	int	result;
-
-	result = format(type[*i + 1], *args);
-	if (result != -1)
-		(*i)++;
-	else
-		result = ft_error(args);
-	return (result);
-}
-
-int	process_char(const char c, va_list *args)
-{
-	int	result;
-
-	result = printchar(c);
-	if (result == -1)
-		return (ft_error(args));
-	return (1);
-}
-
-int	ft_printf(const char *type, ...)
-{
-	va_list			args;
-	unsigned int	i;
-	int				print_count;
-	int				result;
-
-	print_count = 0;
-	va_start(args, type);
-	i = 0;
-	while (type[i])
+	while (*format)
 	{
-		if (type[i] == '%')
-			result = process_format(type, &i, &args);
+		if (*format == '%' && *(++format))
+		{
+			if (format_parsing(&data, &format))
+				return (PARSE_ERROR);
+			render_conversion(&data);
+		}
 		else
-			result = process_char(type[i], &args);
-		if (result == -1)
-			return (-1);
-		print_count += result;
-		i++;
+			if (write_print(&data, *format) == -1)
+				return (-1);
+		++format;
 	}
-	va_end(args);
-	return (print_count);
+	va_end(data.ap);
+	return (data.chars_written);
 }

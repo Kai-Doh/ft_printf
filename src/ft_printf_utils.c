@@ -5,54 +5,73 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ktiomico <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/08 16:04:09 by ktiomico          #+#    #+#             */
-/*   Updated: 2024/10/09 16:25:41 by ktiomico         ###   ########.fr       */
+/*   Created: 2024/10/10 02:08:47 by ktiomico          #+#    #+#             */
+/*   Updated: 2024/10/11 12:54:03 by ktiomico         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include "libft.h"
 
-int	printchar(int c)
+int	check(const char *s, char c)
 {
-	if (write(1, &c, 1) == -1)
+	if (!s)
+		return (0);
+	while (*s)
+	{
+		if (*s == c)
+			return (1);
+		s++;
+	}
+	return (0);
+}
+
+int	write_print(t_data *data, int c)
+{
+	if (write (1, &c, 1) == -1)
 		return (-1);
+	data->chars_written++;
 	return (1);
 }
 
-int	printstr(char *str)
+int	string_print(t_data *data, const char *str)
 {
-	int	len;
+	int	i;
 
-	if (!str)
-		str = "(null)";
-	len = 0;
-	while (str[len])
-		len++;
-	if (write(1, str, len) == -1)
-		return (-1);
-	return (len);
+	i = 0;
+	if (data->format.precision_value == 0)
+		return (0);
+	else if (data->format.precision_value > 0)
+	{
+		while (i++ < data->format.precision_value && *str)
+		{
+			write_print(data, *str);
+			str++;
+			if (!*str)
+				return (0);
+		}
+	}
+	else if (data->format.precision_value == -1)
+	{
+		while (*str)
+		{
+			if (write_print(data, *str) == -1)
+				return (-1);
+			str++;
+		}
+	}
+	return (0);
 }
-/*
-return 6 on "(null)" because it takes 6 characters to print.
-*/
 
-int	printnbr(int n)
+void	fill_space(t_data *data, const char c, int size)
 {
-	int		len;
-	char	*num;
+	int	i;
 
-	num = ft_itoa(n);
-	if (!num)
-		return (-1);
-	len = printstr(num);
-	free(num);
-	return (len);
-}
-
-int	printpercent(void)
-{
-	if (write(1, "%", 1) == -1)
-		return (-1);
-	return (1);
+	i = 0;
+	while (i < size)
+	{
+		if (write_print(data, c) == -1)
+			return ;
+		i++;
+	}
 }

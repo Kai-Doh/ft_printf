@@ -6,12 +6,46 @@
 /*   By: ktiomico <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 21:39:33 by ktiomico          #+#    #+#             */
-/*   Updated: 2024/10/12 00:32:24 by ktiomico         ###   ########.fr       */
+/*   Updated: 2024/10/13 14:59:31 by ktiomico         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include "libft.h"
+
+int	numlen(long long nbr)
+{
+	int	count;
+
+	count = 0;
+	if (nbr == 0)
+		return (1);
+	if (nbr < 0)
+		nbr *= -1;
+	while (nbr > 0)
+	{
+		nbr /= 10;
+		count++;
+	}
+	return (count);
+}
+
+void	zero_space_sign(t_data *data, int size, int nbr)
+{
+	if (nbr < 0 && data->format.zero)
+	{
+		write_print(data, '-');
+		fill_space(data, '0', size);
+	}
+	else
+	{
+		if (data->format.zero)
+			fill_space(data, '0', size);
+		else
+			fill_space(data, ' ', size);
+	}
+	return ;
+}
 
 void	print_unint_strct(t_data *data, long long nbr, int width)
 {

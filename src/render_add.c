@@ -6,7 +6,7 @@
 /*   By: ktiomico <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 22:38:21 by ktiomico          #+#    #+#             */
-/*   Updated: 2024/10/13 18:48:21 by ktiomico         ###   ########.fr       */
+/*   Updated: 2024/10/13 22:18:10 by ktiomico         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,25 +28,29 @@ int	hex_length(unsigned long long n)
 	return (length);
 }
 
-void	print_nil(t_data *data)
+static void	print_nil(t_data *data, int width)
 {
 	char	*str;
-	int		i;
 
-	str = "0x0";
-	i = 0;
-	while (str[i])
+	str = "(nil)";
+	if (data->format.left_justified)
 	{
-		write_print(data, str[i]);
-		i++;
+		while (*str)
+			write_print(data, *str++);
+		fill_space(data, ' ', width - 5);
 	}
-	return ;
+	else
+	{
+		fill_space(data, ' ', width - 5);
+		while (*str)
+			write_print(data, *str++);
+	}
 }
 
-void	format_add(t_data *data, unsigned long long addr_value, int width)
+static void	format_add(t_data *data, unsigned long long addr_value, int width)
 {
 	if (addr_value == 0)
-		print_nil(data);
+		print_nil(data, width);
 	else if (width > 0 && addr_value)
 	{
 		if (data->format.left_justified)
@@ -80,6 +84,9 @@ void	ft_printf_add(t_data *data, void *address)
 
 	addr_value = (unsigned long long)address;
 	count_hex = hex_length(addr_value);
-	width = data->format.width_value - (count_hex + 2);
+	if (!address)
+		width = data->format.width_value;
+	else
+		width = data->format.width_value - (count_hex + 2);
 	format_add(data, addr_value, width);
 }

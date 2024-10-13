@@ -6,7 +6,7 @@
 /*   By: ktiomico <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 12:50:23 by ktiomico          #+#    #+#             */
-/*   Updated: 2024/10/13 21:40:44 by ktiomico         ###   ########.fr       */
+/*   Updated: 2024/10/13 22:22:09 by ktiomico         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int main() {
 */
 //void *p = NULL;
 //	printf("");
-	ft_printf("[%23s]\n", NULL);
+	ft_printf("[%3.6s]\n", "helloitsme");
 	printf("[12345678901234567890123]");
 //	printf("[%p]", NULL);
 //	printf("%5%");  %-3d   1    "[%-1d]", 0

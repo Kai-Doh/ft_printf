@@ -6,7 +6,7 @@
 /*   By: ktiomico <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 12:50:23 by ktiomico          #+#    #+#             */
-/*   Updated: 2024/10/13 22:22:09 by ktiomico         ###   ########.fr       */
+/*   Updated: 2024/10/13 22:48:20 by ktiomico         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,21 @@
 #include <stdio.h>
 #include <limits.h>
 
-// Declare your ft_printf function here
-// For example:
-// int ft_printf(const char *format, ...);
+int	main(void)
+{
+	int	m;
+	int	n;
 
-int main() {
+	printf("---printf:");
+	m = printf("[%s]", "JOUEZ A TFT");
+	printf("\n");
+	ft_printf("ft_printf:");
+	n = ft_printf("[%s]", "JOUEZ A TFT");
+	ft_printf("\n");
+	ft_printf("return of printf: %d\n", m);
+	ft_printf("return of ft_printf: %d\n", n);
+	return (0);
+}
 /*
     printf("[%0d]\n]why does this go down here1", -1);
     printf("[%0d]\n]why does this go down here2", -1);
@@ -26,25 +36,4 @@ int main() {
     ft_printf("[%0d]\n]why does this go down here5", -1);
     ft_printf("[%0d]\n]why does this go down here6", -1);
     ft_printf("[%0d]\n]why does this go down here7", -1);
-//weird behavior between printf and ft_printf
 */
-//void *p = NULL;
-//	printf("");
-	ft_printf("[%3.6s]\n", "helloitsme");
-	printf("[12345678901234567890123]");
-//	printf("[%p]", NULL);
-//	printf("%5%");  %-3d   1    "[%-1d]", 0
-
-//	ft_printf("return of printf: %d\nreturn of ft_printf: \n", b);
-  //  return (0);
-}
-// mandatory p 0
-// - 27 29
-//
-//	printf("[%.3d]\n", -1);
-//	ft_printf("[%.3d]\n", -1);
-//	printf("[%.4d]\n", -1);
-//	ft_printf("[%.4d]\n", -1);
-
-// string with width and precision didnt work
-// width 10 %d didnt work

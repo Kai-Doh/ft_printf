@@ -6,14 +6,26 @@
 /*   By: ktiomico <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 01:18:46 by ktiomico          #+#    #+#             */
-/*   Updated: 2024/10/11 17:51:14 by ktiomico         ###   ########.fr       */
+/*   Updated: 2024/10/13 17:42:03 by ktiomico         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include "libft.h"
 
-void	render_conversion(t_data *data)
+void	print_prec_zero(t_data *data)
+{
+	int	precision;
+
+	precision = data->format.precision_value;
+	while (precision > 0)
+	{
+		write_print(data, '0');
+		precision--;
+	}
+}
+
+static void	render_conversion(t_data *data)
 {
 	char	type;
 

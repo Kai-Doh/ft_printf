@@ -6,7 +6,7 @@
 /*   By: ktiomico <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 00:42:48 by ktiomico          #+#    #+#             */
-/*   Updated: 2024/10/13 16:05:50 by ktiomico         ###   ########.fr       */
+/*   Updated: 2024/10/13 17:41:24 by ktiomico         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,12 @@ void	zero_space(t_data *data, int size)
 	return ;
 }
 
-void	print_prec_zero(t_data *data)
+void	print_prec_zero_d(t_data *data, int precision)
 {
-	while (data->format.precision_value > 0)
+	while (precision > 0)
 	{
 		write_print(data, '0');
-		data->format.precision_value--;
+		precision--;
 	}
 }
 

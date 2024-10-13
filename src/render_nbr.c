@@ -6,7 +6,7 @@
 /*   By: ktiomico <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 16:32:19 by ktiomico          #+#    #+#             */
-/*   Updated: 2024/10/13 15:07:50 by ktiomico         ###   ########.fr       */
+/*   Updated: 2024/10/13 16:09:00 by ktiomico         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ void	print_prec_left(t_data *data, int nbr)
 
 void	struct_int_prec(t_data *data, int nbr)
 {
+	if (data->format.zero == 1)
+		data->format.zero = 0;
 	if (nbr < 0 || data->format.plus || data->format.space)
 		data->format.width_value--;
 	if (data->format.precision_value > numlen(nbr))
@@ -62,7 +64,7 @@ void	struct_int_prec(t_data *data, int nbr)
 
 void	ft_printf_int(t_data *data, int nbr)
 {
-	if (data->format.zero == 1)
+	if (data->format.zero == 1 && data->format.precision_value == -1)
 		struct_int_zero(data, nbr);
 	else if (data->format.precision_value > 0)
 		struct_int_prec(data, nbr);

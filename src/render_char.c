@@ -6,7 +6,7 @@
 /*   By: ktiomico <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 02:57:05 by ktiomico          #+#    #+#             */
-/*   Updated: 2024/10/13 00:03:48 by ktiomico         ###   ########.fr       */
+/*   Updated: 2024/10/13 16:12:18 by ktiomico         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,11 @@ void	ft_printf_char(t_data *data, int c)
 {
 	int			width;
 
+	if (data->format.specifier == '%')
+	{
+		write_print(data, c);
+		return ;
+	}
 	width = data->format.width_value - 1;
 	if (width < 0)
 		width = 0;

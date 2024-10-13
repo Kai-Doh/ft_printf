@@ -6,7 +6,7 @@
 /*   By: ktiomico <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 22:38:21 by ktiomico          #+#    #+#             */
-/*   Updated: 2024/10/11 17:35:10 by ktiomico         ###   ########.fr       */
+/*   Updated: 2024/10/13 00:00:30 by ktiomico         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	print_nil(t_data *data)
 	char	*str;
 	int		i;
 
-	str = "(nil)";
+	str = "0x0";
 	i = 0;
 	while (str[i])
 	{

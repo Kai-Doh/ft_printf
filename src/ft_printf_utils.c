@@ -6,7 +6,7 @@
 /*   By: ktiomico <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 02:08:47 by ktiomico          #+#    #+#             */
-/*   Updated: 2024/10/13 14:57:34 by ktiomico         ###   ########.fr       */
+/*   Updated: 2024/10/13 19:39:02 by ktiomico         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	check(const char *s, char c)
 
 int	write_print(t_data *data, int c)
 {
-	if (write (1, &c, 1) == -1)
+	if (write(1, &c, 1) == -1)
 		return (-1);
 	data->chars_written++;
 	return (1);
@@ -36,14 +36,11 @@ int	write_print(t_data *data, int c)
 
 int	string_print(t_data *data, const char *str)
 {
-	int	i;
-
-	i = 0;
-	if (data->format.precision_value == 0)
+	if (data->format.precision_value < 5 && !str)
 		return (0);
 	else if (data->format.precision_value > 0)
 	{
-		while (i++ < data->format.precision_value && *str)
+		while (0 < data->format.precision_value-- && *str)
 		{
 			write_print(data, *str);
 			str++;

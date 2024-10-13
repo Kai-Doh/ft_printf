@@ -6,19 +6,12 @@
 /*   By: ktiomico <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 21:39:33 by ktiomico          #+#    #+#             */
-/*   Updated: 2024/10/13 17:53:52 by ktiomico         ###   ########.fr       */
+/*   Updated: 2024/10/13 19:36:00 by ktiomico         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include "libft.h"
-
-void	struct_unint_zero(t_data *data, unsigned int nbr)
-{
-	data->format.width_value -= numlen(nbr);
-	zero_space(data, data->format.width_value);
-	print_nbr(data, nbr);
-}
 
 void	print_unint_prec(t_data *data, unsigned int nbr, int precision)
 {
@@ -58,7 +51,7 @@ void	struct_unint_prec(t_data *data, unsigned int nbr)
 		print_unint_prec(data, nbr, precision);
 }
 
-void	print_unint_strct(t_data *data, unsigned nbr, int width)
+void	print_unint_strct(t_data *data, unsigned int nbr, int width)
 {
 	if (data->format.left_justified)
 	{

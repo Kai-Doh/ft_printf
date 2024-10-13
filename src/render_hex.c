@@ -6,118 +6,92 @@
 /*   By: ktiomico <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 21:37:43 by ktiomico          #+#    #+#             */
-/*   Updated: 2024/10/12 00:26:56 by ktiomico         ###   ########.fr       */
+/*   Updated: 2024/10/13 19:37:07 by ktiomico         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "ft_printf.h"
 
-void	print_hex(t_data *data, unsigned long long nbr)
+void	print_hash(t_data *data)
 {
-	if (nbr >= 16)
+	if (data->format.hashtag == 1)
 	{
-		print_hex(data, nbr / 16);
-		print_hex(data, nbr % 16);
-	}
-	else
-	{
-		if (nbr < 10)
-			write_print(data, nbr + '0');
+		write_print(data, '0');
+		if (data->format.specifier == 'X')
+			write_print(data, 'X');
 		else
-			write_print(data, nbr - 10 + 'a');
+			write_print(data, 'x');
 	}
 }
 
-void	print_hex_upp(t_data *data, unsigned int nbr)
+void	print_hex_prec_left(t_data *data, unsigned int nbr, int precision)
 {
-	if (nbr >= 16)
-	{
-		print_hex_upp(data, nbr / 16);
-		print_hex_upp(data, nbr % 16);
-	}
-	else
-	{
-		if (nbr < 10)
-			write_print(data, nbr + '0');
-		else
-			write_print(data, nbr - 10 + 'A');
-	}
-}
-
-void	format_hex(t_data *data, unsigned int nbr, int width)
-{
-	if (width > 0)
-	{
-		if (data->format.left_justified)
-		{
-			print_hex_hash(data, nbr);
-			print_prec_zero(data);
-			print_hex(data, nbr);
-			zero_space(data, width);
-		}
-		else
-		{
-			zero_space(data, width);
-			print_hex_hash(data, nbr);
-			print_prec_zero(data);
-			print_hex(data, nbr);
-		}
-	}
-	else
-	{
-		print_hex_hash(data, nbr);
-		print_prec_zero(data);
+	if (precision > 0)
+		print_prec_zero_d(data, precision);
+	if (data->format.hashtag && nbr > 0)
+		print_hash(data);
+	if (!(data->format.precision_value == 0 && nbr == 0))
 		print_hex(data, nbr);
-	}
+	zero_space(data, data->format.width_value);
 }
 
-void	format_hex_upp(t_data *data, unsigned int nbr, int width)
+void	print_hex_prec(t_data *data, unsigned int nbr, int precision)
 {
-	if (width > 0)
-	{
-		if (data->format.left_justified)
-		{
-			print_hex_hashup(data, nbr);
-			print_prec_zero(data);
-			print_hex_upp(data, nbr);
-			zero_space(data, width);
-		}
-		else
-		{
-			zero_space(data, width);
-			print_hex_hashup(data, nbr);
-			print_prec_zero(data);
-			print_hex_upp(data, nbr);
-		}
-	}
+	zero_space(data, data->format.width_value);
+	if (data->format.hashtag && nbr > 0)
+		print_hash(data);
+	if (precision > 0)
+		print_prec_zero_d(data, precision);
+	if (!(data->format.precision_value == 0 && nbr == 0))
+		print_hex(data, nbr);
+}
+
+void	struct_hex_prec(t_data *data, unsigned int nbr)
+{
+	int	precision;
+
+	precision = data->format.precision_value;
+	if (data->format.zero == 1)
+		data->format.zero = 0;
+	if (data->format.hashtag)
+		data->format.width_value -= 2;
+	if (precision > hex_length(nbr))
+		data->format.width_value -= precision;
+	else if (!(data->format.precision_value == 0 && nbr == 0))
+		data->format.width_value -= hex_length(nbr);
+	precision -= hex_length(nbr);
+	if (data->format.left_justified)
+		print_hex_prec_left(data, nbr, precision);
 	else
-	{
-		print_hex_hashup(data, nbr);
-		print_prec_zero(data);
-		print_hex_upp(data, nbr);
-	}
+		print_hex_prec(data, nbr, precision);
 }
 
 void	ft_printf_hex(t_data *data, unsigned int nbr)
 {
-	int	width;
 	int	count_hex;
 
-	width = data->format.width_value;
 	count_hex = hex_length(nbr);
-	if (data->format.precision_value > 0)
-		data->format.precision_value -= count_hex;
-	if (data->format.precision_value < 0)
-		data->format.precision_value = 0;
-	if (data->format.hashtag == 1 && nbr != 0)
-		count_hex += 2;
-	if (width > 0)
-		width -= count_hex + data->format.precision_value;
-	if (width < 0)
-		width = 0;
-	if (data->format.specifier == 'X')
-		format_hex_upp(data, nbr, width);
+	if (data->format.precision_value >= 0)
+		struct_hex_prec(data, nbr);
 	else
-		format_hex(data, nbr, width);
+	{
+		data->format.width_value -= count_hex;
+		if (data->format.hashtag)
+			data->format.width_value -= 2;
+		if (data->format.left_justified)
+		{
+			if (data->format.hashtag && nbr > 0)
+				print_hash(data);
+			print_hex(data, nbr);
+			zero_space(data, data->format.width_value);
+		}
+		else
+		{
+			if (data->format.hashtag && nbr > 0)
+				print_hash(data);
+			zero_space(data, data->format.width_value);
+			print_hex(data, nbr);
+		}
+	}
 }

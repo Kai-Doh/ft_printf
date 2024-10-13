@@ -6,7 +6,7 @@
 /*   By: ktiomico <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 22:38:21 by ktiomico          #+#    #+#             */
-/*   Updated: 2024/10/13 22:18:10 by ktiomico         ###   ########.fr       */
+/*   Updated: 2024/10/13 23:09:50 by ktiomico         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,16 +32,16 @@ static void	print_nil(t_data *data, int width)
 {
 	char	*str;
 
-	str = "(nil)";
+	str = "0x0";
 	if (data->format.left_justified)
 	{
 		while (*str)
 			write_print(data, *str++);
-		fill_space(data, ' ', width - 5);
+		fill_space(data, ' ', width - 3);
 	}
 	else
 	{
-		fill_space(data, ' ', width - 5);
+		fill_space(data, ' ', width - 3);
 		while (*str)
 			write_print(data, *str++);
 	}

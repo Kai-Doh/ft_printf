@@ -6,12 +6,25 @@
 /*   By: ktiomico <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 21:39:33 by ktiomico          #+#    #+#             */
-/*   Updated: 2024/10/13 14:59:31 by ktiomico         ###   ########.fr       */
+/*   Updated: 2024/10/13 15:07:57 by ktiomico         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include "libft.h"
+
+void	print_nbr(t_data *data, long long nbr)
+{
+	if (nbr < 0)
+		nbr *= -1;
+	if (nbr >= 10)
+	{
+		print_nbr(data, nbr / 10);
+		print_nbr(data, nbr % 10);
+	}
+	else
+		write_print(data, nbr + '0');
+}
 
 int	numlen(long long nbr)
 {

@@ -6,25 +6,13 @@
 /*   By: ktiomico <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 16:32:19 by ktiomico          #+#    #+#             */
-/*   Updated: 2024/10/13 15:00:41 by ktiomico         ###   ########.fr       */
+/*   Updated: 2024/10/13 15:07:50 by ktiomico         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "ft_printf.h"
 
-void	print_nbr(t_data *data, long long nbr)
-{
-	if (nbr < 0)
-		nbr *= -1;
-	if (nbr >= 10)
-	{
-		print_nbr(data, nbr / 10);
-		print_nbr(data, nbr % 10);
-	}
-	else
-		write_print(data, nbr + '0');
-}
 void	struct_int_zero(t_data *data, int nbr)
 {
 	if (nbr < 0 || data->format.plus || data->format.space)

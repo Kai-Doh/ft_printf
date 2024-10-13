@@ -6,7 +6,7 @@
 #    By: ktiomico <marvin@42lausanne.ch>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/08 16:59:45 by ktiomico          #+#    #+#              #
-#    Updated: 2024/10/13 17:54:43 by ktiomico         ###   ########.fr        #
+#    Updated: 2024/10/13 20:04:53 by ktiomico         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,7 @@ SRCS =	src/ft_printf.c \
 		src/parsing.c \
 		src/render_char.c \
 		src/render_str.c \
+		src/render_str2.c \
 		src/render_unint.c \
 		src/render_hex.c \
 		src/render_add.c \

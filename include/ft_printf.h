@@ -6,7 +6,7 @@
 /*   By: ktiomico <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 14:03:09 by ktiomico          #+#    #+#             */
-/*   Updated: 2024/10/13 19:35:41 by ktiomico         ###   ########.fr       */
+/*   Updated: 2024/10/13 21:27:15 by ktiomico         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ typedef struct s_data
 
 int		check(const char *s, char c);
 void	fill_space(t_data *data, const char c, int size);
-char	*ft_lolo_itoa(long long n);
 int		ft_printf(const char *format, ...);
 void	ft_printf_add(t_data *data, void *address);
 void	ft_printf_char(t_data *data, int c);
@@ -65,10 +64,12 @@ void	print_prec_zero(t_data *data);
 void	print_str(t_data *data, const char *str);
 void	struct_unint_zero(t_data *data, unsigned int nbr);
 void	sign_space(t_data *data, long long nbr);
-int		string_print(t_data *data, const char *str);
+int		string_print(t_data *data, const char *str, int precision);
 void	str_null(t_data *data);
 int		write_print(t_data *data, int c);
 void	zero_space(t_data *data, int size);
 void	zero_space_sign(t_data *data, int size, int nbr);
+void	struct_str_null(t_data *data);
+void	struct_str_empty(t_data *data);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: ktiomico <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 02:08:47 by ktiomico          #+#    #+#             */
-/*   Updated: 2024/10/13 19:39:02 by ktiomico         ###   ########.fr       */
+/*   Updated: 2024/10/13 21:30:30 by ktiomico         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,30 +34,29 @@ int	write_print(t_data *data, int c)
 	return (1);
 }
 
-int	string_print(t_data *data, const char *str)
+int	string_print(t_data *data, const char *str, int precision)
 {
-	if (data->format.precision_value < 5 && !str)
-		return (0);
-	else if (data->format.precision_value > 0)
-	{
-		while (0 < data->format.precision_value-- && *str)
-		{
-			write_print(data, *str);
-			str++;
-			if (!*str)
-				return (0);
-		}
-	}
-	else if (data->format.precision_value == -1)
+	if (precision > (int)ft_strlen(str) && data->format.width_value == 0)
 	{
 		while (*str)
 		{
-			if (write_print(data, *str) == -1)
-				return (-1);
+			write_print(data, *str);
 			str++;
 		}
 	}
-	return (0);
+	else if (precision < (int)ft_strlen(str) && precision != -1)
+	{
+		while (precision-- > 0)
+		{
+			write_print(data, *str++);
+		}
+	}
+	else
+	{
+		while (*str)
+			write_print(data, *str++);
+	}
+	return (1);
 }
 
 void	fill_space(t_data *data, const char c, int size)

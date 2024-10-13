@@ -6,7 +6,11 @@
 /*   By: ktiomico <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 00:42:48 by ktiomico          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2024/10/11 15:24:40 by ktiomico         ###   ########.fr       */
+=======
+/*   Updated: 2024/10/13 14:40:05 by ktiomico         ###   ########.fr       */
+>>>>>>> origin/bonus
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +37,21 @@ void	print_hex_hash(t_data *data, unsigned int nbr)
 
 void	zero_space(t_data *data, int size)
 {
+<<<<<<< HEAD
 	if (data->format.zero)
 		fill_space(data, '0', size);
 	else
 		fill_space(data, ' ', size);
+=======
+	while (size > 0)
+	{
+		if (data->format.zero)
+			write_print(data, '0');
+		else
+			write_print(data, ' ');
+		size--;
+	}
+>>>>>>> origin/bonus
 	return ;
 }
 

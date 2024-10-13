@@ -6,7 +6,11 @@
 /*   By: ktiomico <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 14:03:09 by ktiomico          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2024/10/11 18:01:04 by ktiomico         ###   ########.fr       */
+=======
+/*   Updated: 2024/10/13 13:40:27 by ktiomico         ###   ########.fr       */
+>>>>>>> origin/bonus
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,5 +71,9 @@ int		string_print(t_data *data, const char *str);
 void	str_null(t_data *data);
 int		write_print(t_data *data, int c);
 void	zero_space(t_data *data, int size);
+<<<<<<< HEAD
+=======
+void	zero_space_sign(t_data *data, int size, int nbr);
+>>>>>>> origin/bonus
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: ktiomico <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 14:03:09 by ktiomico          #+#    #+#             */
-/*   Updated: 2024/10/13 21:27:15 by ktiomico         ###   ########.fr       */
+/*   Updated: 2024/10/13 23:27:23 by ktiomico         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,6 @@ int		format_parsing(t_data *data, const char **format);
 int		hex_length(unsigned long long n);
 int		numlen(long long nbr);
 void	print_hex(t_data *data, unsigned long long nbr);
-void	print_hex_hashup(t_data *data, unsigned int nbr);
-void	print_hex_hash(t_data *data, unsigned int nbr);
 void	print_nbr(t_data *data, long long nbr);
 void	print_prec_zero_d(t_data *data, int precision);
 void	print_prec_zero(t_data *data);

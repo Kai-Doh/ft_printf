@@ -6,61 +6,59 @@
 /*   By: ktiomico <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 21:39:33 by ktiomico          #+#    #+#             */
-/*   Updated: 2024/10/13 17:17:27 by ktiomico         ###   ########.fr       */
+/*   Updated: 2024/10/13 17:53:52 by ktiomico         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include "libft.h"
 
-void	print_nbr(t_data *data, long long nbr)
+void	struct_unint_zero(t_data *data, unsigned int nbr)
 {
-	if (nbr < 0)
-		nbr *= -1;
-	if (nbr >= 10)
-	{
-		print_nbr(data, nbr / 10);
-		print_nbr(data, nbr % 10);
-	}
+	data->format.width_value -= numlen(nbr);
+	zero_space(data, data->format.width_value);
+	print_nbr(data, nbr);
+}
+
+void	print_unint_prec(t_data *data, unsigned int nbr, int precision)
+{
+	zero_space(data, data->format.width_value);
+	sign_space(data, nbr);
+	if (precision > 0)
+		print_prec_zero_d(data, precision);
+	if (!(data->format.precision_value == 0 && nbr == 0))
+		print_nbr(data, nbr);
+}
+
+void	print_unint_prec_left(t_data *data, unsigned int nbr, int precision)
+{
+	sign_space(data, nbr);
+	if (precision > 0)
+		print_prec_zero_d(data, precision);
+	if (!(data->format.precision_value == 0 && nbr == 0))
+		print_nbr(data, nbr);
+	zero_space(data, data->format.width_value);
+}
+
+void	struct_unint_prec(t_data *data, unsigned int nbr)
+{
+	int	precision;
+
+	precision = data->format.precision_value;
+	if (data->format.zero == 1)
+		data->format.zero = 0;
+	if (precision > numlen(nbr))
+		data->format.width_value -= precision;
+	else if (!(data->format.precision_value == 0 && nbr == 0))
+		data->format.width_value -= numlen(nbr);
+	precision -= numlen(nbr);
+	if (data->format.left_justified)
+		print_unint_prec_left(data, nbr, precision);
 	else
-		write_print(data, nbr + '0');
+		print_unint_prec(data, nbr, precision);
 }
 
-int	numlen(long long nbr)
-{
-	int	count;
-
-	count = 0;
-	if (nbr == 0)
-		return (1);
-	if (nbr < 0)
-		nbr *= -1;
-	while (nbr > 0)
-	{
-		nbr /= 10;
-		count++;
-	}
-	return (count);
-}
-
-void	zero_space_sign(t_data *data, int size, int nbr)
-{
-	if (nbr < 0 && data->format.zero)
-	{
-		write_print(data, '-');
-		fill_space(data, '0', size);
-	}
-	else
-	{
-		if (data->format.zero)
-			fill_space(data, '0', size);
-		else
-			fill_space(data, ' ', size);
-	}
-	return ;
-}
-
-void	print_unint_strct(t_data *data, long long nbr, int width)
+void	print_unint_strct(t_data *data, unsigned nbr, int width)
 {
 	if (data->format.left_justified)
 	{
@@ -80,21 +78,22 @@ void	print_unint_strct(t_data *data, long long nbr, int width)
 
 void	ft_printf_unint(t_data *data, unsigned int nbr)
 {
-	int	width;
-	int	num_len;
-
-	num_len = numlen(nbr);
-	width = data->format.width_value - num_len;
-	if (data->format.precision_value != -1)
+	if (data->format.zero == 1 && data->format.precision_value == -1)
+		struct_unint_zero(data, nbr);
+	else if (data->format.precision_value >= 0)
+		struct_unint_prec(data, nbr);
+	else
 	{
-		if (data->format.precision_value > num_len)
-			width -= data->format.precision_value - num_len;
-		if (width < 0)
-			width = 0;
+		data->format.width_value -= numlen(nbr);
+		if (data->format.left_justified)
+		{
+			print_nbr(data, nbr);
+			zero_space(data, data->format.width_value);
+		}
+		else
+		{
+			zero_space(data, data->format.width_value);
+			print_nbr(data, nbr);
+		}
 	}
-	if (data->format.precision_value > 0)
-		data->format.precision_value -= num_len;
-	if (data->format.precision_value < 0)
-		data->format.precision_value = 0;
-	print_unint_strct(data, nbr, width);
 }

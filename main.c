@@ -6,7 +6,7 @@
 /*   By: ktiomico <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 12:50:23 by ktiomico          #+#    #+#             */
-/*   Updated: 2024/10/13 17:42:13 by ktiomico         ###   ########.fr       */
+/*   Updated: 2024/10/13 17:51:08 by ktiomico         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int main() {
 //weird behavior between printf and ft_printf
 */
 //	printf("");
-	ft_printf(" [%5.0i] \n", 0);
+	ft_printf(" [%05u] \n", 3);
 	printf(" [%.1d] ", 0);
 //	printf("%5%");  %-3d   1    "[%-1d]", 0
 

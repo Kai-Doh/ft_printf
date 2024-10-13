@@ -33,18 +33,9 @@ int main() {
 //weird behavior between printf and ft_printf
 */
 //	printf("");
-<<<<<<< HEAD
-	ft_printf("ft_printf: ");
-	int f = ft_printf(" [%.2d] \n", -1);
-	ft_printf("   printf: ");
-	int	t = printf(" [%.2d] \n", -1);
-	ft_printf("return of ft_printf: %d\nreturn of printf: %d\n", f, t);
-//	printf("%5%");
-=======
 	ft_printf(" [%-12d] ", LONG_MIN);
 	printf(" [%-12ld] ", LONG_MIN);
 //	printf("%5%");  %-3d   1    "[%-1d]", 0
->>>>>>> origin/bonus
 
 //	ft_printf("return of printf: %d\nreturn of ft_printf: \n", b);
   //  return (0);

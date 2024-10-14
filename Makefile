@@ -6,11 +6,11 @@
 #    By: ktiomico <marvin@42lausanne.ch>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/08 16:59:45 by ktiomico          #+#    #+#              #
-#    Updated: 2024/10/13 20:04:53 by ktiomico         ###   ########.fr        #
+#    Updated: 2024/10/14 13:10:20 by ktiomico         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME =	libftprintf.a
+NAME = libftprintf.a
 
 SRCS =	src/ft_printf.c \
 		src/ft_printf_utils.c \

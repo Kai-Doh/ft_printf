@@ -6,7 +6,7 @@
 /*   By: ktiomico <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 14:27:07 by ktiomico          #+#    #+#             */
-/*   Updated: 2024/10/13 21:26:30 by ktiomico         ###   ########.fr       */
+/*   Updated: 2024/10/14 14:41:41 by ktiomico         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,25 @@
 void	str_null(t_data *data)
 {
 	char	*str;
+	int		precision;
 
+	precision = data->format.precision_value;
 	str = "(null)";
-	while (*str)
+	if (precision > -1 && precision < 7)
 	{
-		write_print(data, *str);
-		str++;
+		while (precision-- > 0)
+		{
+			write_print(data, *str);
+			str++;
+		}
+	}
+	else
+	{
+		while (*str)
+		{
+			write_print(data, *str);
+			str++;
+		}
 	}
 	return ;
 }
@@ -48,13 +61,15 @@ void	struct_str2(t_data *data, const char *str, int width, int precision)
 void	struct_str(t_data *data, const char *str)
 {
 	int	precision;
+	int	width;
 
 	precision = data->format.precision_value;
+	width = data->format.width_value;
 	if (precision != -1 && precision < (int)ft_strlen(str))
-		data->format.width_value -= precision;
+		width -= precision;
 	else if (precision == -1 || precision > (int)ft_strlen(str))
-		data->format.width_value -= ft_strlen(str);
-	struct_str2(data, str, data->format.width_value, precision);
+		width -= ft_strlen(str);
+	struct_str2(data, str, width, precision);
 }
 
 void	print_str(t_data *data, const char *str)

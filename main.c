@@ -6,7 +6,7 @@
 /*   By: ktiomico <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 12:50:23 by ktiomico          #+#    #+#             */
-/*   Updated: 2024/10/13 22:48:20 by ktiomico         ###   ########.fr       */
+/*   Updated: 2024/10/14 17:17:49 by ktiomico         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,14 @@ int	main(void)
 {
 	int	m;
 	int	n;
+	void *p;
 
+	p = &n;
 	printf("---printf:");
-	m = printf("[%s]", "JOUEZ A TFT");
+	m = printf("[% d]", 14);
 	printf("\n");
 	ft_printf("ft_printf:");
-	n = ft_printf("[%s]", "JOUEZ A TFT");
+	n = ft_printf("[% d]", 14);
 	ft_printf("\n");
 	ft_printf("return of printf: %d\n", m);
 	ft_printf("return of ft_printf: %d\n", n);

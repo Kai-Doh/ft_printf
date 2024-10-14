@@ -6,7 +6,7 @@
 /*   By: ktiomico <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 21:37:43 by ktiomico          #+#    #+#             */
-/*   Updated: 2024/10/13 19:37:07 by ktiomico         ###   ########.fr       */
+/*   Updated: 2024/10/13 23:27:03 by ktiomico         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	print_hash(t_data *data)
 	}
 }
 
-void	print_hex_prec_left(t_data *data, unsigned int nbr, int precision)
+static void	print_hex_prec_left(t_data *data, unsigned int nbr, int precision)
 {
 	if (precision > 0)
 		print_prec_zero_d(data, precision);
@@ -36,7 +36,7 @@ void	print_hex_prec_left(t_data *data, unsigned int nbr, int precision)
 	zero_space(data, data->format.width_value);
 }
 
-void	print_hex_prec(t_data *data, unsigned int nbr, int precision)
+static void	print_hex_prec(t_data *data, unsigned int nbr, int precision)
 {
 	zero_space(data, data->format.width_value);
 	if (data->format.hashtag && nbr > 0)
@@ -47,7 +47,7 @@ void	print_hex_prec(t_data *data, unsigned int nbr, int precision)
 		print_hex(data, nbr);
 }
 
-void	struct_hex_prec(t_data *data, unsigned int nbr)
+static void	struct_hex_prec(t_data *data, unsigned int nbr)
 {
 	int	precision;
 
